@@ -2,8 +2,6 @@
 (function () {
   const endpoint = 'https://script.google.com/macros/s/AKfycbyqJLlc3IHvRzOr6cw25FgSy9s2E1IOWCNzvQXVp0IPfXPqxthC1-1ylCqrQB178Z4i/exec';
   const storeKey = 'sales-flow-records';
-  // Bump this key whenever the API changes so an existing tab refreshes its data.
-  const syncKey = 'sales-flow-sheet-synced-v2';
 
   function load() {
     return new Promise((resolve, reject) => {
@@ -34,16 +32,32 @@
   localStorage.setItem('sales-flow-apps-script-url', endpoint);
   window.salesFlowRemote = { endpoint, load, save };
 
-  // The sheet is the source of truth: refresh each browser tab once per session.
-  if (!sessionStorage.getItem(syncKey)) {
-    load().then(records => {
-      localStorage.setItem(storeKey, JSON.stringify(records));
-      sessionStorage.setItem(syncKey, '1');
-      window.dispatchEvent(new CustomEvent('sales-flow-sheet-loaded', { detail: records }));
-      if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', () => location.reload(), { once: true });
-      else location.reload();
-    }).catch(() => {
-      sessionStorage.setItem(syncKey, '1');
-    });
+  // Google Sheets is the source of truth. Check it again whenever the user
+  // returns to the dashboard, so data saved in another tab is never cached.
+  let syncing = false;
+  function syncFromSheet() {
+    if (syncing) return Promise.resolve(false);
+    syncing = true;
+    return load().then(records => {
+      const next = JSON.stringify(records);
+      const previous = localStorage.getItem(storeKey) || '[]';
+      const changed = next !== previous;
+      if (changed) {
+        localStorage.setItem(storeKey, next);
+        window.dispatchEvent(new CustomEvent('sales-flow-sheet-loaded', { detail: records }));
+      }
+      return changed;
+    }).catch(() => false).finally(() => { syncing = false; });
   }
+
+  window.salesFlowRemote.refresh = syncFromSheet;
+  syncFromSheet().then(changed => {
+    // The dashboard builds its charts at page load, so render fresh records
+    // after a sheet change without relying on a one-time session cache.
+    if (changed) location.reload();
+  });
+  window.addEventListener('focus', () => syncFromSheet().then(changed => { if (changed) location.reload(); }));
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) syncFromSheet().then(changed => { if (changed) location.reload(); });
+  });
 }());
