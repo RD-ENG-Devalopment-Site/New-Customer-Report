@@ -1,7 +1,9 @@
 /* Google Sheets data source for Sales Flow */
 (function () {
-  const endpoint = 'https://script.google.com/macros/s/AKfycbz4G-F0L-xaP-RqwqUH9KVrbzI__t0eLzfuNUx7vGK0mRYe0M_Jdcopu-1-t-1WDoec/exec';
+  const endpoint = 'https://script.google.com/macros/s/AKfycbyqJLlc3IHvRzOr6cw25FgSy9s2E1IOWCNzvQXVp0IPfXPqxthC1-1ylCqrQB178Z4i/exec';
   const storeKey = 'sales-flow-records';
+  // Bump this key whenever the API changes so an existing tab refreshes its data.
+  const syncKey = 'sales-flow-sheet-synced-v2';
 
   function load() {
     return new Promise((resolve, reject) => {
@@ -33,15 +35,15 @@
   window.salesFlowRemote = { endpoint, load, save };
 
   // The sheet is the source of truth: refresh each browser tab once per session.
-  if (!sessionStorage.getItem('sales-flow-sheet-synced')) {
+  if (!sessionStorage.getItem(syncKey)) {
     load().then(records => {
       localStorage.setItem(storeKey, JSON.stringify(records));
-      sessionStorage.setItem('sales-flow-sheet-synced', '1');
+      sessionStorage.setItem(syncKey, '1');
       window.dispatchEvent(new CustomEvent('sales-flow-sheet-loaded', { detail: records }));
       if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', () => location.reload(), { once: true });
       else location.reload();
     }).catch(() => {
-      sessionStorage.setItem('sales-flow-sheet-synced', '1');
+      sessionStorage.setItem(syncKey, '1');
     });
   }
 }());
