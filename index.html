@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales Flow | แดชบอร์ดติดตามการขาย</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f6f8fc;color:#20263b;font-family:Arial,"Noto Sans Thai",sans-serif;font-size:14px}.dashboard{min-height:100vh;display:flex}.sidebar{width:246px;background:#172a58;color:#eef3ff;display:flex;flex-direction:column;padding:28px 18px}.brand{display:flex;align-items:center;gap:10px;font-size:17px;line-height:15px;padding:0 8px 39px}.brand b{color:#7cc4ff}.brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#59a7fa;font-weight:800;font-size:19px;color:#fff}.nav a{display:flex;gap:13px;align-items:center;padding:13px 14px;border-radius:10px;color:#a9b7db;font-size:15px;margin-bottom:8px;cursor:pointer;transition:.2s}.nav a:hover{background:#243b70;color:#fff}.nav .selected{background:#2d4376;color:#fff;font-weight:bold}.account{margin-top:auto;border-top:1px solid #334875;padding:20px 5px;display:flex;align-items:center;gap:9px}.avatar{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#f6b765;color:#65390c;font-weight:bold}.account b,.account small{display:block}.account b{font-size:12px}.account small{color:#9eafd3;font-size:10px}.content{width:calc(100% - 246px);max-width:1450px;padding:37px 48px 20px;margin:auto}header{display:flex;justify-content:space-between}.eyebrow{color:#8491aa;margin:0 0 7px;font-size:12px}h1{font-size:27px;margin:0;letter-spacing:-.8px}.sub,.card-title p{margin:6px 0 0;color:#8894aa;font-size:12px}.profile{width:38px;height:38px;border:0;border-radius:50%;background:#f6b765;color:#65390c;font-weight:bold}.filter-row{display:flex;justify-content:space-between;margin:28px 0 19px}.filter-row label{color:#7a879e;font-size:12px}.filter-row select,.period,.card-title select{border:1px solid #e1e6f0;background:#fff;border-radius:8px;padding:8px 10px;color:#35435e;font-size:12px;margin-left:8px}.period{margin:0;cursor:pointer}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:18px}.stat,.card{background:#fff;border:1px solid #edf0f5;border-radius:14px;box-shadow:0 5px 18px rgba(32,54,98,.035)}.stat{padding:18px;min-height:110px}.stat span,.stat small{display:block;color:#8a96ab;font-size:12px}.stat strong{display:block;font-size:21px;margin:7px 0}.stat small{font-size:10px;color:#48b88b}.stat small.muted{color:#98a3b6}.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:18px}.card{padding:21px}.card-title{display:flex;justify-content:space-between;align-items:start}.card h2{font-size:15px;margin:0}.text-btn{background:none;border:0;color:#638ec9;font-size:12px;cursor:pointer}.legend{display:flex;justify-content:flex-end;gap:15px;color:#75829a;font-size:10px;margin:7px 0}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#2563eb;margin-right:4px}.dot.green{background:#16a34a}.chart{height:180px;border-bottom:1px solid #ebeff5;display:flex;align-items:end;justify-content:space-around;background:repeating-linear-gradient(to bottom,transparent 0,transparent 58px,#edf1f6 59px)}.bar-group{height:100%;display:flex;align-items:end;gap:5px;position:relative;padding-bottom:22px}.bar{width:12px;border-radius:4px 4px 0 0;background:#60a5fa;transition:height .35s ease;cursor:help}.bar.closed{background:#22c55e}.bar:hover{filter:brightness(.83)}.bar-group small{position:absolute;bottom:3px;color:#98a3b5;font-size:10px;left:4px}.ring{width:152px;height:152px;margin:17px auto;background:conic-gradient(#5faaf0 59%,#e8eef6 0);border-radius:50%;display:grid;place-items:center}.ring:before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:#fff}.ring div{z-index:1;text-align:center}.ring strong,.ring span{display:block}.ring strong{font-size:24px}.ring span{font-size:10px;color:#909bae}.goal-details{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #eef1f5;padding-top:13px;text-align:center}.goal-details div+div{border-left:1px solid #eef1f5}.goal-details span{display:block;color:#8f9aac;font-size:10px}.goal-details b{display:block;font-size:12px;margin-top:3px}.goal-msg{text-align:center;color:#7290b6;background:#f3f8ff;padding:8px;border-radius:7px;font-size:10px}.lead{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid #f0f2f6}.lead-avatar{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#f7d8d5;color:#d16d69;font-weight:bold}.lead-info{flex:1}.lead-info b,.lead-info span{display:block}.lead-info b{font-size:11px}.lead-info span{font-size:10px;color:#99a4b4;margin-top:3px}.value{text-align:right;font-size:11px;font-weight:bold}.value small{display:block;color:#a0a9b8;font-weight:normal;font-size:9px;margin-top:3px}.follow{margin-left:7px;border:1px solid #cddff2;background:#f5faff;color:#4d90cf;padding:6px 9px;border-radius:6px;font-size:10px;cursor:pointer}.quick-add{display:flex;gap:7px;margin-top:12px}.quick-add input{flex:1;border:1px dashed #c8d8eb;border-radius:7px;padding:8px;font-size:11px}.quick-add button,.daily-actions button{border:0;background:#438fda;color:#fff;border-radius:7px;padding:7px 12px;font-size:11px;cursor:pointer}textarea{width:100%;height:90px;resize:none;border:1px solid #e2e7ef;border-radius:8px;margin:15px 0 7px;padding:10px;font:11px Arial;color:#536078;line-height:1.5}.daily-actions{display:flex;justify-content:space-between}.daily-actions span{font-size:10px;color:#a3acba}.saved-note{margin-top:13px;border-top:1px solid #edf0f4;padding-top:11px;color:#8e9bad;font-size:10px}.saved-note b{color:#34445f}.week{margin-top:0}.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:18px}.day{text-align:center;border-radius:9px;padding:8px 4px;color:#919cac;cursor:pointer}.day:hover{background:#f4f8fd}.day.current{background:#edf6ff;color:#438ed9}.day span,.day b,.day strong,.day small{display:block}.day span{font-size:10px}.day b{font-size:15px;margin-top:2px}.day strong{font-size:10px;color:#56627a;margin-top:7px}.day small{font-size:10px;margin-top:2px}.summary{border-top:1px solid #edf0f4;margin-top:15px;padding-top:13px;display:flex;gap:45px;color:#919cad;font-size:11px}.summary b{color:#3c4962}.summary .success{color:#39ae7f}#toast{position:fixed;right:24px;bottom:24px;background:#172a58;color:#fff;padding:12px 15px;border-radius:9px;box-shadow:0 10px 30px #172a5844;transform:translateY(80px);opacity:0;transition:.25s;z-index:5;font-size:12px}#toast.show{transform:translateY(0);opacity:1}@media(max-width:1000px){.sidebar{width:66px;padding:24px 10px}.brand span:not(.brand-mark),.nav span,.account div{display:none}.content{width:calc(100% - 66px);padding:28px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.sidebar{display:none}.content{width:100%;padding:22px 15px}.stats,.grid{grid-template-columns:1fr}.summary{gap:12px;justify-content:space-between}}
+  </style>
+  <style>.lower-grid,.grid:has(#leads),.grid:has(#comment),.week{display:none!important}</style>
+  <style>.entry-card{display:none!important}</style>
+</head>
+<body>
+  <main class="dashboard">
+    <aside class="sidebar"><div class="brand"><span class="brand-mark">S</span><span>Sales<br><b>Flow</b></span></div><nav class="nav"><a class="selected">▦ <span>ภาพรวม</span></a><a>◷ <span>การติดตาม</span></a><a>◎ <span>ผู้มุ่งหวัง</span></a><a>◈ <span>รายงาน</span></a></nav><div class="account"><span class="avatar">ม</span><div><b>มุก ชนัญญา</b><small>Sales Executive</small></div></div></aside>
+    <section class="content">
+      <header><div><p class="eyebrow">วันจันทร์, 14 กรกฎาคม 2569</p><h1>สวัสดี, <span id="saleName">มุก</span> 👋</h1><p class="sub">ภาพรวมการติดตามและยอดขายของคุณวันนี้</p></div><button class="profile">ม</button></header>
+      <div class="filter-row"><label>ชื่อ Sale <select id="sale"><option>มุก ชนัญญา</option><option>พิมพ์ชนก อินทร์สุข</option><option>ธนกฤต ศรีสุข</option></select></label><button class="period">⌄ วันนี้</button></div>
+      <section class="stats"><article class="stat"><span>ยอดขายที่ปิดได้</span><strong id="closedTotal">฿147,000</strong><small>↑ 18.5% จากเมื่อวาน</small></article><article class="stat"><span>รอติดตาม</span><strong id="pendingCount">2 ราย</strong><small class="muted">มูลค่ารวม ฿79,000</small></article><article class="stat"><span>อัตราการปิดการขาย</span><strong id="rate">50%</strong><small>↑ 4.2% จากสัปดาห์ก่อน</small></article><article class="stat"><span>ยอดรวมทั้งหมด</span><strong id="total">฿226,000</strong><small class="muted">จาก <span id="leadCount">4</span> ผู้มุ่งหวัง</small></article></section>
+      <section class="grid"><article class="card"><div class="card-title"><div><h2>ภาพรวมยอดขาย</h2><p>สัปดาห์นี้</p></div><select><option>สัปดาห์นี้</option></select></div><div class="legend"><span><i class="dot"></i>ยอดติดตาม</span><span><i class="dot green"></i>ปิดการขาย</span></div><div class="chart" id="chart"></div></article><article class="card"><div class="card-title"><div><h2>เป้าหมายเดือนนี้</h2><p>กรกฎาคม 2569</p></div></div><div class="ring"><div><strong>59%</strong><span>สำเร็จแล้ว</span></div></div><div class="goal-details"><div><span>ยอดที่ทำได้</span><b>฿147,000</b></div><div><span>เป้าหมาย</span><b>฿250,000</b></div></div><p class="goal-msg">อีก ฿103,000 เพื่อบรรลุเป้าหมาย 🎯</p></article></section>
+      <section class="grid"><article class="card"><div class="card-title"><div><h2>ผู้มุ่งหวังที่ต้องติดตาม</h2><p>อัปเดตล่าสุดวันนี้</p></div><button class="text-btn">ดูทั้งหมด →</button></div><div id="leads"></div><div class="quick-add"><input id="newLead" placeholder="เพิ่มผู้มุ่งหวังใหม่..."><button onclick="addLead()">＋ เพิ่ม</button></div></article><article class="card"><div class="card-title"><div><h2>บันทึกประจำวัน</h2><p>สิ่งที่ทำและผลลัพธ์วันนี้</p></div></div><textarea id="comment">ติดตามลูกค้าที่ส่งใบเสนอราคาเมื่อวาน และยืนยันเวลานัดนำเสนอ 2 ราย</textarea><div class="daily-actions"><span id="counter">0/280</span><button onclick="saveComment()">บันทึก</button></div><div class="saved-note" id="savedNote"><b>✓ บันทึกแล้ว</b><br>ติดตามลูกค้าที่ส่งใบเสนอราคาเมื่อวาน และยืนยันเวลานัดนำเสนอ 2 ราย</div></article></section>
+      <section class="card week"><div class="card-title"><div><h2>สรุปรายสัปดาห์</h2><p>13 – 19 กรกฎาคม 2569</p></div><button class="text-btn">ดูรายงาน →</button></div><div class="week-grid"><div class="day"><span>อา.</span><b>13</b><strong>3 ราย</strong><small>฿64K</small></div><div class="day current"><span>จ.</span><b>14</b><strong>4 ราย</strong><small>฿85K</small></div><div class="day"><span>อ.</span><b>15</b><strong>2 ราย</strong><small>฿47K</small></div><div class="day"><span>พ.</span><b>16</b><strong>4 ราย</strong><small>฿92K</small></div><div class="day"><span>พฤ.</span><b>17</b><strong>2 ราย</strong><small>฿36K</small></div><div class="day"><span>ศ.</span><b>18</b><strong>1 ราย</strong><small>฿28K</small></div><div class="day"><span>ส.</span><b>19</b><strong>0 ราย</strong><small>—</small></div></div><div class="summary"><span>ทำการติดตามแล้ว <b>16 ราย</b></span><span>ปิดการขาย <b class="success">5 ราย</b></span><span>ยอดขายรวม <b>฿189,000</b></span></div></section><footer>Sales Flow Dashboard · อัปเดตล่าสุดเมื่อ 09:42 น.</footer>
+    </section>
+  </main>
+  <script>
+    const leads=[{name:'คุณณัฐชา วัฒนกุล',plan:'โทรติดตามใบเสนอราคา',value:32000},{name:'โรงแรม เดอะ วีล',plan:'ส่งข้อมูลเพิ่มเติม',value:47000}];
+    const chart=document.querySelector('#chart');[55,72,42,86,64,76,36].forEach((h,i)=>chart.insertAdjacentHTML('beforeend',`<div class="bar-group"><i class="bar" style="height:${h}%"></i><i class="bar closed" style="height:${Math.max(15,h-21)}%"></i><small>${['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'][i]}</small></div>`));
+    function money(n){return new Intl.NumberFormat('th-TH',{style:'currency',currency:'THB',maximumFractionDigits:0}).format(n)}
+    function render(){const box=document.querySelector('#leads');box.innerHTML=leads.map((x,i)=>`<div class="lead"><span class="lead-avatar">${x.name[0]}</span><div class="lead-info"><b>${x.name}</b><span>${x.plan}</span></div><div class="value">${money(x.value)}<small>วันนี้</small></div><button class="follow" onclick="closeLead(${i})">ติดตาม</button></div>`).join('');document.querySelector('#pendingCount').textContent=leads.length+' ราย';document.querySelector('#leadCount').textContent=leads.length+2}
+    function closeLead(i){leads.splice(i,1);render();document.querySelector('#closedTotal').textContent=money(147000);document.querySelector('#rate').textContent='67%'}
+    function addLead(){const input=document.querySelector('#newLead');if(!input.value.trim())return;leads.push({name:input.value.trim(),plan:'วางแผนติดตาม',value:0});input.value='';render()}
+    function saveComment(){const text=document.querySelector('#comment').value.trim();if(!text)return;document.querySelector('#savedNote').innerHTML='<b>✓ บันทึกแล้ว</b><br>'+text}
+    document.querySelector('#comment').addEventListener('input',e=>document.querySelector('#counter').textContent=e.target.value.length+'/280');document.querySelector('#counter').textContent=document.querySelector('#comment').value.length+'/280';document.querySelector('#sale').addEventListener('change',e=>document.querySelector('#saleName').textContent=e.target.value.split(' ')[0]);render();
+  </script>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script>
+    /* ปรับพฤติกรรมให้ไฟล์ HTML ใช้งานได้โดยไม่พึ่งเซิร์ฟเวอร์ */
+    const persistedState = JSON.parse(localStorage.getItem('sales-flow-state') || '{}');
+    const salesApp = {
+      closedCount: persistedState.closedCount || 2,
+      closedAmount: persistedState.closedAmount || 147000,
+      leads: persistedState.leads || JSON.parse(localStorage.getItem('sales-flow-leads') || 'null') || [
+        {name:'คุณณัฐชา วัฒนกุล', plan:'โทรติดตามใบเสนอราคา', value:32000},
+        {name:'โรงแรม เดอะ วีล', plan:'ส่งข้อมูลเพิ่มเติม', value:47000}
+      ],
+      chart: {
+        'สัปดาห์นี้': {days:['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'], follow:[55,72,42,86,64,76,36], closed:[34,49,18,66,42,53,12]},
+        'เดือนนี้': {days:['สัป. 1','สัป. 2','สัป. 3','สัป. 4'], follow:[62,79,69,88], closed:[39,56,48,70]},
+        'ไตรมาสนี้': {days:['เม.ย.','พ.ค.','มิ.ย.','ก.ค.'], follow:[46,61,73,84], closed:[27,43,54,62]}
+      }
+    };
+    const toast = message => {
+      const el = document.querySelector('#toast'); el.textContent = message; el.classList.add('show');
+      clearTimeout(window.toastTimer); window.toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+    };
+    const money2 = n => new Intl.NumberFormat('th-TH',{style:'currency',currency:'THB',maximumFractionDigits:0}).format(n);
+    const chartPicker = document.querySelector('.card-title select');
+    chartPicker.innerHTML = '<option>สัปดาห์นี้</option><option>เดือนนี้</option><option>ไตรมาสนี้</option>';
+    function renderChart(){
+      const data=salesApp.chart[chartPicker.value], chart=document.querySelector('#chart'); chart.innerHTML='';
+      data.days.forEach((day,i)=>chart.insertAdjacentHTML('beforeend', `<div class="bar-group"><i class="bar" title="ยอดติดตาม ${data.follow[i]}K" style="height:${data.follow[i]}%"></i><i class="bar closed" title="ปิดการขาย ${data.closed[i]}K" style="height:${data.closed[i]}%"></i><small>${day}</small></div>`));
+    }
+    function renderLeads(){
+      const box=document.querySelector('#leads');
+      box.innerHTML=salesApp.leads.length ? salesApp.leads.map((x,i)=>`<div class="lead"><span class="lead-avatar">${x.name[0]}</span><div class="lead-info"><b>${x.name}</b><span>${x.plan}</span></div><div class="value">${money2(x.value)}<small>วันนี้</small></div><button class="follow" onclick="window.closeLead(${i})">ปิดการติดตาม</button></div>`).join('') : '<p class="sub">ไม่มีรายการที่ต้องติดตามแล้ว 🎉</p>';
+      const pendingValue=salesApp.leads.reduce((sum,item)=>sum+item.value,0), totalLeads=salesApp.closedCount+salesApp.leads.length;
+      document.querySelector('#pendingCount').textContent=salesApp.leads.length+' ราย';
+      document.querySelector('#closedTotal').textContent=money2(salesApp.closedAmount);
+      document.querySelector('#rate').textContent=Math.round(salesApp.closedCount/totalLeads*100)+'%';
+      document.querySelector('#total').textContent=money2(salesApp.closedAmount+pendingValue);
+      document.querySelector('#leadCount').textContent=totalLeads;
+      document.querySelector('.stats article:nth-child(2) small').textContent='มูลค่ารวม '+money2(pendingValue);
+    }
+    window.closeLead = index => {
+      const lead=salesApp.leads.splice(index,1)[0]; salesApp.closedCount++; salesApp.closedAmount+=lead.value;
+      localStorage.setItem('sales-flow-leads',JSON.stringify(salesApp.leads)); localStorage.setItem('sales-flow-state',JSON.stringify(salesApp)); renderLeads(); toast('ปิดการติดตาม '+lead.name+' แล้ว');
+    };
+    window.addLead = () => {
+      const input=document.querySelector('#newLead'), name=input.value.trim(); if(!name){toast('กรุณาระบุชื่อผู้มุ่งหวัง'); input.focus(); return;}
+      salesApp.leads.push({name,plan:'วางแผนติดตาม',value:0}); localStorage.setItem('sales-flow-leads',JSON.stringify(salesApp.leads)); localStorage.setItem('sales-flow-state',JSON.stringify(salesApp)); input.value=''; renderLeads(); toast('เพิ่มผู้มุ่งหวังใหม่แล้ว');
+    };
+    window.saveComment = () => {
+      const text=document.querySelector('#comment').value.trim(); if(!text){toast('กรุณาเขียนบันทึกก่อนบันทึก'); return;}
+      localStorage.setItem('sales-flow-comment',text); document.querySelector('#savedNote').innerHTML='<b>✓ บันทึกแล้ว</b><br>'+text; toast('บันทึกประจำวันเรียบร้อย');
+    };
+    const savedComment=localStorage.getItem('sales-flow-comment'); if(savedComment) document.querySelector('#comment').value=savedComment;
+    document.querySelector('#comment').addEventListener('input', e=>document.querySelector('#counter').textContent=e.target.value.length+'/280');
+    document.querySelector('#counter').textContent=document.querySelector('#comment').value.length+'/280';
+    chartPicker.addEventListener('change',()=>{renderChart();toast('แสดงข้อมูล'+chartPicker.value);});
+    document.querySelector('.period').addEventListener('click',()=>toast('กำลังแสดงผลข้อมูลของวันนี้'));
+    document.querySelector('#newLead').addEventListener('keydown',e=>{if(e.key==='Enter') window.addLead();});
+    document.querySelectorAll('.nav a').forEach((item,index)=>item.addEventListener('click',()=>{document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('selected'));item.classList.add('selected');toast(['แสดงภาพรวมยอดขาย','แสดงรายการติดตาม','แสดงผู้มุ่งหวัง','กำลังเตรียมรายงาน'][index]);}));
+    document.querySelectorAll('.text-btn').forEach(button=>button.addEventListener('click',()=>toast('เปิดมุมมองรายละเอียดแล้ว')));
+    document.querySelectorAll('.day').forEach(day=>day.addEventListener('click',()=>{document.querySelectorAll('.day').forEach(x=>x.classList.remove('current'));day.classList.add('current');toast('เลือกวันที่ '+day.querySelector('b').textContent+' กรกฎาคม');}));
+    renderChart(); renderLeads();
+  </script>
+  <script>
+    /* แดชบอร์ดกลาง: ไม่แสดงชื่อผู้รับผิดชอบรายบุคคล */
+    document.querySelector('.filter-row label')?.remove();
+    document.querySelector('.account')?.remove();
+    document.querySelector('.profile')?.remove();
+    const pageTitle = document.querySelector('h1');
+    if (pageTitle) pageTitle.textContent = 'ภาพรวมยอดขาย';
+  </script>
+  <script>
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/1LtQC2c3QxX5NLxXOc-4UpAweNOTqlkKGGZ9ZFFmqIJc/edit';
+    const sheetStyle = document.createElement('style');
+    sheetStyle.textContent = `.entry-card{margin:0 0 18px}.entry-head{display:flex;justify-content:space-between;align-items:start;gap:16px}.entry-head a{color:#2563eb;font-size:11px;text-decoration:none}.entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.entry-grid label{display:grid;gap:6px;color:#66748b;font-size:11px}.entry-grid input,.entry-grid select,.entry-grid textarea{width:100%;border:1px solid #dfe6ef;border-radius:7px;padding:9px;font:12px Arial;color:#28344d;background:#fff}.entry-grid textarea{height:38px;margin:0;resize:vertical}.entry-grid .wide{grid-column:span 3}.entry-actions{display:flex;align-items:center;gap:9px;margin-top:14px}.entry-actions button{border:0;border-radius:7px;padding:8px 13px;background:#2563eb;color:#fff;font-size:11px;cursor:pointer}.entry-actions .outline{background:#fff;color:#2563eb;border:1px solid #bcd4f1}.connection{font-size:10px;color:#8c98aa;margin-left:auto}@media(max-width:650px){.entry-grid{grid-template-columns:1fr}.entry-grid .wide{grid-column:span 1}.entry-actions{flex-wrap:wrap}.connection{width:100%;margin-left:0}}`;
+    document.head.appendChild(sheetStyle);
+    const entryCard = document.createElement('section');
+    entryCard.className = 'card entry-card';
+    entryCard.innerHTML = `<div class="entry-head"><div><h2>บันทึกข้อมูล</h2><p class="sub">เพิ่มรายการติดตามและบันทึกลง Google Sheets</p></div><a href="${sheetUrl}" target="_blank" rel="noopener">เปิด Google Sheet ↗</a></div><form id="sheetForm"><div class="entry-grid"><label>วันที่บันทึก<input name="date" type="date" required></label><label>ชื่อลูกค้า<input name="customer" placeholder="เช่น บริษัท เอ บี ซี" required></label><label>ประเภทผู้มุ่งหวัง<select name="type"><option>ใหม่</option><option>เดิม</option><option>รอติดตาม</option></select></label><label>แผนการติดตาม<input name="plan" placeholder="เช่น โทรติดตามใบเสนอราคา" required></label><label>สถานะ<select name="status"><option>รอติดตาม</option><option>ปิดแล้ว</option><option>ยังไม่ปิด</option></select></label><label>มูลค่า (บาท)<input name="value" type="number" min="0" step="1" placeholder="0"></label><label class="wide">หมายเหตุ<textarea name="note" placeholder="รายละเอียดเพิ่มเติม"></textarea></label></div><div class="entry-actions"><button type="submit">บันทึกข้อมูล</button><button class="outline" type="button" id="openSheet">ดูข้อมูลใน Google Sheets</button><button class="outline" type="button" id="setEndpoint">ตั้งค่า Google Sheets</button><span class="connection" id="sheetStatus">บันทึกในเครื่อง พร้อมเชื่อมต่อ Google Sheets</span></div></form>`;
+    const footer = document.querySelector('.content footer');
+    document.querySelector('.content').insertBefore(entryCard, footer);
+    document.querySelector('[name=date]').value = new Date().toISOString().slice(0,10);
+    document.querySelector('#openSheet').addEventListener('click', () => window.open(sheetUrl, '_blank', 'noopener'));
+    document.querySelector('#setEndpoint').addEventListener('click', () => { const current=localStorage.getItem('sales-flow-apps-script-url') || ''; const url=prompt('วาง URL ของ Apps Script Web App', current); if(url !== null){localStorage.setItem('sales-flow-apps-script-url',url.trim()); document.querySelector('#sheetStatus').textContent=url.trim()?'เชื่อมต่อ Google Sheets พร้อมใช้งาน':'ยกเลิกการเชื่อมต่อ Google Sheets';} });
+    document.querySelector('#sheetForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(event.currentTarget));
+      const records = JSON.parse(localStorage.getItem('sales-flow-records') || '[]'); records.unshift(data); localStorage.setItem('sales-flow-records', JSON.stringify(records));
+      const endpoint = localStorage.getItem('sales-flow-apps-script-url');
+      if (endpoint) {
+        try { await fetch(endpoint, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) }); document.querySelector('#sheetStatus').textContent = 'ส่งข้อมูลไป Google Sheets แล้ว'; }
+        catch { document.querySelector('#sheetStatus').textContent = 'บันทึกในเครื่องแล้ว — ส่งไป Google Sheets ไม่สำเร็จ'; }
+      } else document.querySelector('#sheetStatus').textContent = 'บันทึกในเครื่องแล้ว — ใส่ Apps Script URL เพื่อส่งเข้า Google Sheets';
+      event.currentTarget.reset(); document.querySelector('[name=date]').value = new Date().toISOString().slice(0,10); toast('บันทึกข้อมูลเรียบร้อย');
+    });
+  </script>
+  <script>
+    /* เปลี่ยนโฟกัสของแดชบอร์ดเป็นจำนวนคน ไม่แสดงข้อมูลทางการเงิน */
+    const peopleStyle = document.createElement('style');
+    peopleStyle.textContent = `.lead .value,.week-grid .day small,.summary span:last-child{display:none!important}.goal-details{grid-template-columns:1fr 1fr}.chart-caption{font-size:10px;color:#7f8ba0;text-align:right;margin-top:5px}`;
+    document.head.appendChild(peopleStyle);
+    const statCards = document.querySelectorAll('.stats .stat');
+    const setStat = (index, title, amount, note) => { const card=statCards[index]; card.querySelector('span').textContent=title; card.querySelector('strong').textContent=amount; card.querySelector('small').textContent=note; };
+    setStat(0,'ติดตามแล้ว','16 ราย','ทำการติดตามวันนี้');
+    setStat(1,'รอติดตาม','2 ราย','นัดหมายภายในวันนี้');
+    setStat(2,'อัตราการติดตามสำเร็จ','80%','จากเป้าหมายวันนี้');
+    setStat(3,'ผู้มุ่งหวังทั้งหมด','20 ราย','กำลังดูแลในระบบ');
+    const cards = document.querySelectorAll('.card');
+    cards[0].querySelector('h2').textContent='ภาพรวมการติดตาม';
+    cards[0].querySelector('.legend').innerHTML='<span><i class="dot"></i>จำนวนที่ต้องติดตาม</span><span><i class="dot green"></i>ติดตามสำเร็จ</span>';
+    const goal = cards[1]; goal.querySelector('h2').textContent='เป้าหมายการติดตามเดือนนี้';
+    goal.querySelector('.ring strong').textContent='60%'; goal.querySelector('.ring span').textContent='ทำสำเร็จแล้ว';
+    goal.querySelector('.ring').style.background='conic-gradient(#5faaf0 60%,#e8eef6 0)';
+    goal.querySelector('.goal-details').innerHTML='<div><span>ติดตามสำเร็จ</span><b>12 ราย</b></div><div><span>เป้าหมาย</span><b>20 ราย</b></div>';
+    goal.querySelector('.goal-msg').textContent='อีก 8 ราย เพื่อบรรลุเป้าหมาย 🎯';
+    document.querySelectorAll('.week-grid .day').forEach(day=>{day.querySelector('small')?.remove();});
+    document.querySelector('.summary span:last-child')?.remove();
+    const valueInput = document.querySelector('[name=value]'); valueInput?.closest('label')?.remove();
+    const entryGrid = document.querySelector('#sheetForm .entry-grid'); if(entryGrid) entryGrid.style.gridTemplateColumns='repeat(2,1fr)';
+    document.querySelector('#sheetForm .wide')?.style && (document.querySelector('#sheetForm .wide').style.gridColumn='span 2');
+    const peopleChart = { 'สัปดาห์นี้':{days:['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'],follow:[4,6,3,7,5,6,3],done:[3,4,2,5,4,5,1]}, 'เดือนนี้':{days:['สัป. 1','สัป. 2','สัป. 3','สัป. 4'],follow:[12,15,14,17],done:[9,11,10,13]}, 'ไตรมาสนี้':{days:['เม.ย.','พ.ค.','มิ.ย.','ก.ค.'],follow:[34,38,42,44],done:[26,30,35,37]} };
+    const peopleChartPicker = document.querySelector('.card-title select');
+    const renderPeopleChart = () => { const data=peopleChart[peopleChartPicker.value], max=Math.max(...data.follow); document.querySelector('#chart').innerHTML=data.days.map((day,i)=>`<div class="bar-group"><i class="bar" title="ต้องติดตาม ${data.follow[i]} ราย" style="height:${Math.round(data.follow[i]/max*86)}%"></i><i class="bar closed" title="ติดตามสำเร็จ ${data.done[i]} ราย" style="height:${Math.round(data.done[i]/max*86)}%"></i><small>${day}</small></div>`).join(''); };
+    peopleChartPicker.addEventListener('change',renderPeopleChart); renderPeopleChart();
+    const oldCloseLead = window.closeLead;
+    window.closeLead = index => { oldCloseLead(index); setStat(1,'รอติดตาม',salesApp.leads.length+' ราย','นัดหมายภายในวันนี้'); setStat(0,'ติดตามแล้ว',(16 + (2-salesApp.leads.length))+' ราย','ทำการติดตามวันนี้'); setStat(3,'ผู้มุ่งหวังทั้งหมด','20 ราย','กำลังดูแลในระบบ'); };
+  </script>
+  <script>
+    /* เริ่มต้นระบบแบบไม่มีข้อมูลตัวอย่าง */
+    ['sales-flow-leads','sales-flow-state','sales-flow-comment','sales-flow-records'].forEach(key => localStorage.removeItem(key));
+    salesApp.leads = []; salesApp.closedCount = 0; salesApp.closedAmount = 0; renderLeads();
+    const clearStat = (index, title, amount, note) => { const card=document.querySelectorAll('.stats .stat')[index]; card.querySelector('span').textContent=title; card.querySelector('strong').textContent=amount; card.querySelector('small').textContent=note; };
+    clearStat(0,'ติดตามแล้ว','0 ราย','ยังไม่มีข้อมูล');
+    clearStat(1,'รอติดตาม','0 ราย','ยังไม่มีนัดหมาย');
+    clearStat(2,'อัตราการติดตามสำเร็จ','0%','เริ่มบันทึกข้อมูลเพื่อดูสรุป');
+    clearStat(3,'ผู้มุ่งหวังทั้งหมด','0 ราย','ยังไม่มีผู้มุ่งหวังในระบบ');
+    const noDataGoal = document.querySelectorAll('.card')[1];
+    noDataGoal.querySelector('.ring').style.background='conic-gradient(#5faaf0 0%,#e8eef6 0)';
+    noDataGoal.querySelector('.ring strong').textContent='0%';
+    noDataGoal.querySelector('.goal-details').innerHTML='<div><span>ติดตามสำเร็จ</span><b>0 ราย</b></div><div><span>เป้าหมาย</span><b>ยังไม่กำหนด</b></div>';
+    noDataGoal.querySelector('.goal-msg').textContent='เพิ่มข้อมูลผู้มุ่งหวังเพื่อเริ่มติดตาม 🎯';
+    document.querySelector('#chart').innerHTML='<p style="margin:auto;color:#9aa5b5;font-size:12px">ยังไม่มีข้อมูลการติดตาม</p>';
+    document.querySelector('.week-grid').innerHTML='<p style="grid-column:1/-1;text-align:center;color:#9aa5b5;font-size:12px;margin:12px">ยังไม่มีข้อมูลรายสัปดาห์</p>';
+    document.querySelector('.summary').innerHTML='<span>เริ่มบันทึกข้อมูลเพื่อดูสรุปรายสัปดาห์</span>';
+    document.querySelector('#comment').value='';
+    document.querySelector('#counter').textContent='0/280';
+    document.querySelector('#savedNote').innerHTML='<b>ยังไม่มีบันทึกประจำวัน</b><br>เริ่มบันทึกสิ่งที่ทำและผลการติดตามได้ที่นี่';
+  </script>
+  <script>
+    /* กราฟผลการติดตามรายวัน */
+    const dailyStyle = document.createElement('style');
+    dailyStyle.textContent = `.daily-chart-card{min-height:350px}.daily-chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.daily-chart-head h2{margin:0;font-size:15px}.daily-chart-head p{margin:6px 0 0;font-size:11px;color:#8793a8}.daily-date{border:1px solid #dfe6ef;border-radius:8px;padding:7px 9px;color:#40506b;font:12px Arial}.daily-legend{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:11px;margin:15px 0 6px;font-size:10px;color:#66748b}.daily-legend span{display:flex;align-items:center;gap:4px}.daily-legend i{width:8px;height:8px;border-radius:2px}.daily-plot{height:205px;display:flex;align-items:flex-end;justify-content:space-around;border-bottom:1px solid #e7edf5;background:repeating-linear-gradient(to bottom,transparent 0,transparent 50px,#edf2f7 51px);padding:0 24px}.daily-bar-group{position:relative;height:100%;display:flex;align-items:flex-end;padding-bottom:25px}.daily-bar{width:31px;border-radius:7px 7px 2px 2px;min-height:3px;position:relative;transition:height .35s ease}.daily-bar span{position:absolute;top:-20px;width:100%;text-align:center;font-size:11px;color:#3d4b62;font-weight:bold}.daily-bar small{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;color:#768399;font-size:10px}.daily-empty{margin:auto;color:#94a0b1;font-size:12px}@media(max-width:650px){.daily-chart-head{display:block}.daily-date{margin-top:12px}.daily-legend{justify-content:flex-start}.daily-plot{padding:0 5px}.daily-bar{width:22px}.daily-bar small{font-size:9px}}`;
+    document.head.appendChild(dailyStyle);
+    const dailyCard = document.querySelectorAll('.card')[0];
+    dailyCard.classList.add('daily-chart-card');
+    dailyCard.innerHTML = `<div class="daily-chart-head"><div><h2>ผลการติดตามรายวัน</h2><p id="dailySubtitle">สรุปผลตามวันที่เลือก</p></div><input class="daily-date" id="dailyDate" type="date" aria-label="เลือกวันที่"></div><div class="daily-legend"><span><i style="background:#a855f7"></i>ผู้มุ่งหวังเดิม</span><span><i style="background:#38bdf8"></i>ผู้มุ่งหวังใหม่</span><span><i style="background:#f59e0b"></i>รอติดตาม</span><span><i style="background:#10b981"></i>ปิดการติดตาม</span><span><i style="background:#fb7185"></i>ยังไม่ปิด</span></div><div class="daily-plot" id="dailyPlot"></div>`;
+    const dailyDate = document.querySelector('#dailyDate');
+    dailyDate.value = new Date().toISOString().slice(0,10);
+    const dailyTypes = [
+      {label:'เดิม', color:'#a855f7', test:row=>row.type==='เดิม'},
+      {label:'ใหม่', color:'#38bdf8', test:row=>row.type==='ใหม่'},
+      {label:'รอติดตาม', color:'#f59e0b', test:row=>row.status==='รอติดตาม'},
+      {label:'ปิดแล้ว', color:'#10b981', test:row=>row.status==='ปิดแล้ว'},
+      {label:'ยังไม่ปิด', color:'#fb7185', test:row=>row.status==='ยังไม่ปิด'}
+    ];
+    const renderDailyFollowUp = () => {
+      const rows = JSON.parse(localStorage.getItem('sales-flow-records') || '[]').filter(row => row.date === dailyDate.value);
+      const values = dailyTypes.map(item => rows.filter(item.test).length), max = Math.max(1,...values);
+      const plot = document.querySelector('#dailyPlot');
+      plot.innerHTML = dailyTypes.map((item,index) => `<div class="daily-bar-group"><div class="daily-bar" title="${item.label}: ${values[index]} ราย" style="height:${Math.max(3,Math.round(values[index]/max*80))}%;background:${item.color}"><span>${values[index]}</span><small>${item.label}</small></div></div>`).join('');
+      document.querySelector('#dailySubtitle').textContent = rows.length ? `บันทึกทั้งหมด ${rows.length} รายการ` : 'ยังไม่มีข้อมูลในวันที่เลือก';
+    };
+    dailyDate.addEventListener('change', renderDailyFollowUp);
+    document.querySelector('#sheetForm').addEventListener('submit', () => setTimeout(renderDailyFollowUp, 0));
+    renderDailyFollowUp();
+  </script>
+  <script>
+    const entryNav = document.createElement('a');
+    entryNav.href = '#sheetForm';
+    entryNav.innerHTML = '▣ <span>บันทึกข้อมูล</span>';
+    entryNav.addEventListener('click', event => {
+      event.preventDefault();
+      document.querySelectorAll('.nav a').forEach(item => item.classList.remove('selected'));
+      entryNav.classList.add('selected');
+      document.querySelector('.entry-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => document.querySelector('[name=customer]')?.focus(), 450);
+    });
+    document.querySelector('.nav').appendChild(entryNav);
+  </script>
+  <script>
+    /* แบบฟอร์มตัวเลขรายวัน: ตรงกับกราฟผลการติดตาม */
+    const numbersFormStyle = document.createElement('style');
+    numbersFormStyle.textContent = `.numbers-form{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.numbers-form label{display:grid;gap:6px;color:#66748b;font-size:11px}.numbers-form input{width:100%;border:1px solid #dfe6ef;border-radius:7px;padding:9px;font:12px Arial;color:#28344d;background:#fff}.number-field{position:relative}.number-field i{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:5px}.number-note{margin:13px 0 0;color:#8995a8;font-size:10px}@media(max-width:650px){.numbers-form{grid-template-columns:1fr 1fr}}`;
+    document.head.appendChild(numbersFormStyle);
+    const numericEntryCard = document.querySelector('.entry-card');
+    numericEntryCard.innerHTML = `<div class="entry-head"><div><h2>บันทึกข้อมูล</h2><p class="sub">บันทึกจำนวนคนรายวันเพื่ออัปเดตกราฟผลการติดตาม</p></div><a href="${sheetUrl}" target="_blank" rel="noopener">เปิด Google Sheet ↗</a></div><form id="numbersForm"><div class="numbers-form"><label>วันที่บันทึก<input name="date" type="date" required></label><label class="number-field"><span><i style="background:#a855f7"></i>ผู้มุ่งหวังเดิม</span><input name="old" type="number" min="0" step="1" value="0" required></label><label class="number-field"><span><i style="background:#38bdf8"></i>ผู้มุ่งหวังใหม่</span><input name="newProspect" type="number" min="0" step="1" value="0" required></label><label class="number-field"><span><i style="background:#f59e0b"></i>รอติดตาม</span><input name="waiting" type="number" min="0" step="1" value="0" required></label><label class="number-field"><span><i style="background:#10b981"></i>ปิดการติดตาม</span><input name="closed" type="number" min="0" step="1" value="0" required></label><label class="number-field"><span><i style="background:#fb7185"></i>ยังไม่ปิด</span><input name="notClosed" type="number" min="0" step="1" value="0" required></label></div><p class="number-note">กรอกตัวเลขจำนวนคน แล้วกดบันทึกเพื่อแสดงบนกราฟของวันที่เลือก</p><div class="entry-actions"><button type="submit">บันทึกผลรายวัน</button><button class="outline" type="button" id="openNumbersSheet">ดูข้อมูลใน Google Sheets</button><button class="outline" type="button" id="setNumbersEndpoint">ตั้งค่า Google Sheets</button><span class="connection" id="numbersStatus">บันทึกในเครื่อง พร้อมเชื่อมต่อ Google Sheets</span></div></form>`;
+    const numbersDate = document.querySelector('#numbersForm [name=date]'); numbersDate.value = dailyDate.value;
+    document.querySelector('#openNumbersSheet').addEventListener('click', () => window.open(sheetUrl, '_blank', 'noopener'));
+    document.querySelector('#setNumbersEndpoint').addEventListener('click', () => { const current=localStorage.getItem('sales-flow-apps-script-url') || ''; const url=prompt('วาง URL ของ Apps Script Web App', current); if(url !== null){localStorage.setItem('sales-flow-apps-script-url',url.trim()); document.querySelector('#numbersStatus').textContent=url.trim()?'เชื่อมต่อ Google Sheets พร้อมใช้งาน':'ยกเลิกการเชื่อมต่อ Google Sheets';} });
+    const numberTypes = [
+      {key:'old', label:'เดิม', color:'#a855f7'}, {key:'newProspect', label:'ใหม่', color:'#38bdf8'}, {key:'waiting', label:'รอติดตาม', color:'#f59e0b'}, {key:'closed', label:'ปิดแล้ว', color:'#10b981'}, {key:'notClosed', label:'ยังไม่ปิด', color:'#fb7185'}
+    ];
+    const renderNumberChart = () => {
+      const records=JSON.parse(localStorage.getItem('sales-flow-records') || '[]');
+      const record=records.find(item=>item.date===dailyDate.value) || {};
+      const values=numberTypes.map(item=>Number(record[item.key] || 0)), max=Math.max(1,...values);
+      document.querySelector('#dailyPlot').innerHTML=numberTypes.map((item,index)=>`<div class="daily-bar-group"><div class="daily-bar" title="${item.label}: ${values[index]} ราย" style="height:${Math.max(3,Math.round(values[index]/max*80))}%;background:${item.color}"><span>${values[index]}</span><small>${item.label}</small></div></div>`).join('');
+      document.querySelector('#dailySubtitle').textContent=values.some(value=>value>0)?'ผลการติดตามตามวันที่เลือก':'ยังไม่มีข้อมูลในวันที่เลือก';
+    };
+    dailyDate.addEventListener('change', renderNumberChart);
+    document.querySelector('#numbersForm').addEventListener('submit', async event => {
+      event.preventDefault(); const form=Object.fromEntries(new FormData(event.currentTarget));
+      numberTypes.forEach(item=>form[item.key]=Number(form[item.key] || 0));
+      const records=JSON.parse(localStorage.getItem('sales-flow-records') || '[]').filter(item=>item.date!==form.date); records.unshift(form); localStorage.setItem('sales-flow-records',JSON.stringify(records));
+      dailyDate.value=form.date; renderNumberChart();
+      const endpoint=localStorage.getItem('sales-flow-apps-script-url');
+      if(endpoint){try{await fetch(endpoint,{method:'POST',mode:'no-cors',body:JSON.stringify(form)});document.querySelector('#numbersStatus').textContent='ส่งข้อมูลไป Google Sheets แล้ว';}catch{document.querySelector('#numbersStatus').textContent='บันทึกในเครื่องแล้ว — ส่งไป Google Sheets ไม่สำเร็จ';}}
+      else document.querySelector('#numbersStatus').textContent='บันทึกในเครื่องแล้ว — ใส่ Apps Script URL เพื่อส่งเข้า Google Sheets';
+      toast('บันทึกผลการติดตามรายวันเรียบร้อย');
+    });
+    renderNumberChart();
+  </script>
+  <script>
+    /* แพลนการติดตาม: เป้าหมายและผลที่ทำได้ */
+    const planFields = document.querySelector('.numbers-form');
+    planFields.insertAdjacentHTML('beforeend', `<label class="number-field"><span><i style="background:#2563eb"></i>แพลนเป้าหมาย</span><input name="planTarget" type="number" min="0" step="1" value="0" required></label><label class="number-field"><span><i style="background:#14b8a6"></i>แพลนที่ทำได้</span><input name="planAchieved" type="number" min="0" step="1" value="0" required></label>`);
+    const updatePlanProgress = () => {
+      const records=JSON.parse(localStorage.getItem('sales-flow-records') || '[]');
+      const record=records.find(item=>item.date===dailyDate.value) || {};
+      const target=Number(record.planTarget || 0), achieved=Number(record.planAchieved || 0), percent=target ? Math.min(100,Math.round(achieved/target*100)) : 0;
+      const goalCard=document.querySelectorAll('.card')[1];
+      goalCard.querySelector('.ring').style.background=`conic-gradient(#5faaf0 ${percent}%,#e8eef6 0)`;
+      goalCard.querySelector('.ring strong').textContent=percent+'%';
+      goalCard.querySelector('.goal-details').innerHTML=`<div><span>แพลนที่ทำได้</span><b>${achieved} ราย</b></div><div><span>แพลนเป้าหมาย</span><b>${target || 'ยังไม่กำหนด'}${target?' ราย':''}</b></div>`;
+      goalCard.querySelector('.goal-msg').textContent=target ? `อีก ${Math.max(0,target-achieved)} ราย เพื่อบรรลุเป้าหมาย 🎯` : 'กำหนดแพลนเป้าหมายเพื่อดูความคืบหน้า 🎯';
+    };
+    document.querySelector('#numbersForm').addEventListener('submit', () => setTimeout(updatePlanProgress, 0));
+    dailyDate.addEventListener('change', updatePlanProgress);
+    updatePlanProgress();
+  </script>
+  <script>
+    /* สรุปด้านบนตามข้อมูลรายวัน */
+    const topSummaryStyle = document.createElement('style');
+    topSummaryStyle.textContent = `.stats.people-summary{grid-template-columns:repeat(7,minmax(130px,1fr))}.people-summary .stat{min-height:100px;padding:16px}.people-summary .stat strong{font-size:19px}.people-summary .stat small{color:#8390a4}@media(max-width:1300px){.stats.people-summary{grid-template-columns:repeat(4,1fr)}}@media(max-width:760px){.stats.people-summary{grid-template-columns:repeat(2,1fr)}}`;
+    document.head.appendChild(topSummaryStyle);
+    const topSummary = document.querySelector('.stats');
+    const summaryItems = [
+      {key:'planTarget', label:'แพลนเป้าหมาย'},
+      {key:'planAchieved', label:'แพลนที่ทำได้'},
+      {key:'old', label:'ผู้มุ่งหวังเดิม'},
+      {key:'newProspect', label:'ผู้มุ่งหวังใหม่'},
+      {key:'waiting', label:'รอติดตาม'},
+      {key:'closed', label:'ปิดการติดตาม'},
+      {key:'notClosed', label:'ยังไม่ปิด'}
+    ];
+    topSummary.classList.add('people-summary');
+    const renderTopSummary = () => {
+      const records=JSON.parse(localStorage.getItem('sales-flow-records') || '[]');
+      const record=records.find(item=>item.date===dailyDate.value) || {};
+      topSummary.innerHTML=summaryItems.map(item=>`<article class="stat"><span>${item.label}</span><strong>${Number(record[item.key] || 0)} ราย</strong><small>ข้อมูลวันที่เลือก</small></article>`).join('');
+    };
+    dailyDate.addEventListener('change', renderTopSummary);
+    document.querySelector('#numbersForm').addEventListener('submit', () => setTimeout(renderTopSummary, 0));
+    renderTopSummary();
+  </script>
+  <script>
+    document.querySelector('.filter-row')?.remove();
+  </script>
+  <style>.stats.people-summary{margin-top:18px}</style>
+  <script>
+    document.querySelector('.lower-grid')?.remove();
+  </script>
+  <style>
+    .stats.people-summary .stat{border-top:4px solid var(--summary-color);background:linear-gradient(135deg,var(--summary-tint),#fff 58%)}
+    .stats.people-summary .stat>span{color:var(--summary-color);font-weight:600}
+    .stats.people-summary .stat>strong{color:#1f2b40}
+    .stats.people-summary .stat:nth-child(1){--summary-color:#2563eb;--summary-tint:#eff6ff}
+    .stats.people-summary .stat:nth-child(2){--summary-color:#14b8a6;--summary-tint:#f0fdfa}
+    .stats.people-summary .stat:nth-child(3){--summary-color:#a855f7;--summary-tint:#faf5ff}
+    .stats.people-summary .stat:nth-child(4){--summary-color:#38bdf8;--summary-tint:#f0f9ff}
+    .stats.people-summary .stat:nth-child(5){--summary-color:#f59e0b;--summary-tint:#fffbeb}
+    .stats.people-summary .stat:nth-child(6){--summary-color:#10b981;--summary-tint:#ecfdf5}
+    .stats.people-summary .stat:nth-child(7){--summary-color:#fb7185;--summary-tint:#fff1f2}
+  </style>
+  <script>
+    document.querySelector('#leads')?.closest('.grid')?.remove();
+  </script>
+  <script>
+    const numbersGrid = document.querySelector('.numbers-form');
+    const planTargetField = numbersGrid.querySelector('[name=planTarget]')?.closest('label');
+    const planAchievedField = numbersGrid.querySelector('[name=planAchieved]')?.closest('label');
+    if (planTargetField && planAchievedField) {
+      numbersGrid.prepend(planAchievedField);
+      numbersGrid.prepend(planTargetField);
+    }
+  </script>
+  <script>document.querySelector('.week')?.remove();</script>
+  <script>
+    /* กราฟสรุปรวมจากบันทึกประจำวัน */
+    const summaryStyle = document.createElement('style');
+    summaryStyle.textContent = `.period-summaries{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}.summary-chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.summary-chart-head h2{margin:0;font-size:15px}.summary-chart-head p{margin:6px 0 0;font-size:11px;color:#8995a8}.period-picker{border:1px solid #dce4ef;border-radius:7px;padding:6px 8px;font:11px Arial;color:#40506b}.summary-legend{display:flex;justify-content:flex-end;gap:12px;margin:13px 0 5px;font-size:10px;color:#718097}.summary-legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}.summary-scroll{overflow-x:auto}.summary-bars{height:180px;min-width:300px;display:flex;align-items:flex-end;justify-content:space-around;border-bottom:1px solid #e8edf4;background:repeating-linear-gradient(to bottom,transparent 0,transparent 50px,#eef2f7 51px);padding:0 8px}.summary-day{height:100%;display:flex;align-items:end;gap:3px;position:relative;padding-bottom:25px;min-width:20px}.summary-bar{width:8px;border-radius:4px 4px 1px 1px;min-height:2px}.summary-bar.target{background:#2563eb}.summary-bar.actual{background:#10b981}.summary-day small{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);font-size:9px;color:#7b879b;white-space:nowrap}.summary-total{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid #edf1f5;color:#7e8b9f;font-size:10px}.summary-total b{color:#34425b;font-size:12px}@media(max-width:850px){.period-summaries{grid-template-columns:1fr}}`;
+    document.head.appendChild(summaryStyle);
+    const periodSummary = document.createElement('section');
+    periodSummary.className='period-summaries';
+    periodSummary.innerHTML = `<article class="card"><div class="summary-chart-head"><div><h2>สรุปรายสัปดาห์</h2><p>รวมแพลนรายวันในสัปดาห์ที่เลือก</p></div><input class="period-picker" id="weekPicker" type="week" aria-label="เลือกสัปดาห์"></div><div class="summary-legend"><span><i style="background:#2563eb"></i>แพลนเป้าหมาย</span><span><i style="background:#10b981"></i>แพลนที่ทำได้</span></div><div class="summary-scroll"><div class="summary-bars" id="weekBars"></div></div><div class="summary-total" id="weekTotal"></div></article><article class="card"><div class="summary-chart-head"><div><h2>สรุปรายเดือน</h2><p>รวมแพลนรายวันในเดือนที่เลือก</p></div><input class="period-picker" id="monthPicker" type="month" aria-label="เลือกเดือน"></div><div class="summary-legend"><span><i style="background:#2563eb"></i>แพลนเป้าหมาย</span><span><i style="background:#10b981"></i>แพลนที่ทำได้</span></div><div class="summary-scroll"><div class="summary-bars" id="monthBars"></div></div><div class="summary-total" id="monthTotal"></div></article>`;
+    document.querySelector('.daily-chart-card').insertAdjacentElement('afterend',periodSummary);
+    const toISOWeek = date => { const d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())); const day=d.getUTCDay()||7; d.setUTCDate(d.getUTCDate()+4-day); const yearStart=new Date(Date.UTC(d.getUTCFullYear(),0,1)); return `${d.getUTCFullYear()}-W${String(Math.ceil((((d-yearStart)/86400000)+1)/7)).padStart(2,'0')}`; };
+    const activeDate = new Date(dailyDate.value+'T00:00:00');
+    document.querySelector('#weekPicker').value=toISOWeek(activeDate);
+    document.querySelector('#monthPicker').value=dailyDate.value.slice(0,7);
+    const getRecords = () => JSON.parse(localStorage.getItem('sales-flow-records') || '[]');
+    const dateKey = date => `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    const renderBars = (elementId,totalId,dates) => {
+      const records=getRecords(), values=dates.map(date=>records.find(row=>row.date===dateKey(date))||{}), max=Math.max(1,...values.flatMap(row=>[Number(row.planTarget||0),Number(row.planAchieved||0)]));
+      document.querySelector('#'+elementId).innerHTML=dates.map((date,index)=>{const row=values[index], target=Number(row.planTarget||0), actual=Number(row.planAchieved||0); return `<div class="summary-day"><i class="summary-bar target" title="เป้าหมาย ${target} ราย" style="height:${Math.max(2,Math.round(target/max*80))}%"></i><i class="summary-bar actual" title="ทำได้ ${actual} ราย" style="height:${Math.max(2,Math.round(actual/max*80))}%"></i><small>${date.getDate()}</small></div>`}).join('');
+      const targetSum=values.reduce((sum,row)=>sum+Number(row.planTarget||0),0), actualSum=values.reduce((sum,row)=>sum+Number(row.planAchieved||0),0);
+      document.querySelector('#'+totalId).innerHTML=`<span>แพลนเป้าหมาย <b>${targetSum} ราย</b></span><span>แพลนที่ทำได้ <b>${actualSum} ราย</b></span>`;
+    };
+    const renderWeekSummary = () => { const [year,week]=document.querySelector('#weekPicker').value.split('-W').map(Number); const jan4=new Date(year,0,4), offset=(jan4.getDay()||7)-1; const monday=new Date(year,0,4-offset+(week-1)*7); renderBars('weekBars','weekTotal',Array.from({length:7},(_,i)=>new Date(year,monday.getMonth(),monday.getDate()+i))); };
+    const renderMonthSummary = () => { const [year,month]=document.querySelector('#monthPicker').value.split('-').map(Number), days=new Date(year,month,0).getDate(); renderBars('monthBars','monthTotal',Array.from({length:days},(_,i)=>new Date(year,month-1,i+1))); };
+    document.querySelector('#weekPicker').addEventListener('change',renderWeekSummary);
+    document.querySelector('#monthPicker').addEventListener('change',renderMonthSummary);
+    document.querySelector('#numbersForm').addEventListener('submit',()=>setTimeout(()=>{renderWeekSummary();renderMonthSummary();},0));
+    renderWeekSummary(); renderMonthSummary();
+  </script>
+  <script>
+    const summaries = document.querySelector('.period-summaries');
+    const entrySection = document.querySelector('.entry-card');
+    if (summaries && entrySection) entrySection.insertAdjacentElement('afterend', summaries);
+  </script>
+  <script>
+    document.querySelector('h1').textContent = 'สรุปผู้มุ่งหวังใหม่';
+    document.querySelector('header .sub').textContent = 'สรุปจำนวนผู้มุ่งหวังใหม่และผลการติดตามรายวัน';
+  </script>
+  <script>
+    const entryMenu = Array.from(document.querySelectorAll('.nav a')).find(item => item.textContent.includes('บันทึกข้อมูล'));
+    if (entryMenu) {
+      entryMenu.href = 'data-entry.html';
+      entryMenu.addEventListener('click', event => { event.preventDefault(); window.location.href = 'data-entry.html'; });
+    }
+  </script>
+  <script>
+    const editMenu = document.createElement('a');
+    editMenu.href = 'edit-data.html';
+    editMenu.innerHTML = '✎ <span>แก้ไขข้อมูล</span>';
+    document.querySelector('.nav').appendChild(editMenu);
+  </script>
+  <script>
+    const dailyGoalCard = document.querySelectorAll('.card')[1];
+    const renderDailyGoalTitle = () => {
+      const selected = new Date(dailyDate.value + 'T00:00:00');
+      dailyGoalCard.querySelector('h2').textContent = 'เป้าหมายการติดตามรายวัน';
+      dailyGoalCard.querySelector('.card-title p').textContent = selected.toLocaleDateString('th-TH', { day:'numeric', month:'long', year:'numeric' });
+    };
+    dailyDate.addEventListener('change', renderDailyGoalTitle);
+    renderDailyGoalTitle();
+  </script>
+  <script>
+    ['การติดตาม', 'ผู้มุ่งหวัง', 'รายงาน'].forEach(label => {
+      Array.from(document.querySelectorAll('.nav a')).find(item => item.textContent.includes(label))?.remove();
+    });
+  </script>
+  <style>.brand span:last-child{white-space:nowrap;font-size:14px;line-height:1.1}</style>
+  <script>
+    const brandName = document.querySelector('.brand span:last-child');
+    if (brandName) brandName.textContent = 'สรุปผู้มุ่งหวังใหม่';
+  </script>
+</body>
+</html>
