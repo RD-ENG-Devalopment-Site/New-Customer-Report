@@ -16,5 +16,6 @@
     document.querySelector('#settings').addEventListener('click',()=>{const current=localStorage.getItem('sales-flow-apps-script-url')||'';const url=prompt('วาง URL ของ Apps Script Web App',current);if(url!==null){localStorage.setItem('sales-flow-apps-script-url',url.trim());document.querySelector('#status').textContent=url.trim()?'เชื่อมต่อ Google Sheets พร้อมใช้งาน':'ยกเลิกการเชื่อมต่อ Google Sheets';}});
     form.addEventListener('submit',async event=>{event.preventDefault();const item=Object.fromEntries(new FormData(form));['planTarget','planAchieved','old','newProspect','waiting','closed','notClosed'].forEach(key=>item[key]=Number(item[key]||0));const records=JSON.parse(localStorage.getItem('sales-flow-records')||'[]').filter(row=>row.date!==item.date);records.unshift(item);localStorage.setItem('sales-flow-records',JSON.stringify(records));try{await window.salesFlowRemote.save(item);document.querySelector('#status').textContent='บันทึกและส่งไป Google Sheets แล้ว';}catch{document.querySelector('#status').textContent='บันทึกในเครื่องแล้ว — ส่งไป Google Sheets ไม่สำเร็จ';}});
   </script>
+  <script>document.querySelectorAll('[name="planAchieved"]').forEach(input => input.closest('label')?.remove());</script>
 </body>
 </html>

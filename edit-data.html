@@ -29,4 +29,9 @@
   form.addEventListener('input',renderCompare);
   form.addEventListener('submit',()=>setTimeout(()=>{beforeEdit={...(records().find(row=>row.date===selectedDate)||{})};renderCompare();},0));
   document.querySelector('#cancel').addEventListener('click',()=>{beforeEdit=null;renderCompare();});renderCompare();
+</script><script>
+  document.querySelectorAll('[name="planAchieved"]').forEach(input => input.closest('label')?.remove());
+  const removeAchievedCompare = () => document.querySelectorAll('#compareBox .compare-group,#compareBox .compare-value').forEach(item => { if (item.textContent.includes('ทำได้')) item.remove(); });
+  new MutationObserver(removeAchievedCompare).observe(document.querySelector('#compareBox'), { childList:true, subtree:true });
+  removeAchievedCompare();
 </script></body></html>

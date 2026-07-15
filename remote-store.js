@@ -37,7 +37,11 @@
   let syncing = false;
   function stableRecords(value) {
     const rows = Array.isArray(value) ? value : [];
-    return rows.slice().sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')));
+    return rows.map(row => {
+      const copy = { ...row };
+      delete copy.planAchieved;
+      return copy;
+    }).sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')));
   }
   function syncFromSheet() {
     if (syncing) return Promise.resolve(false);

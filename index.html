@@ -417,5 +417,12 @@
       document.querySelector('#monthPicker')?.dispatchEvent(new Event('change'));
     });
   </script>
+  <style>.summary-bar.actual,.summary-legend span:nth-child(2),.summary-total span:nth-child(2){display:none!important}</style>
+  <script>
+    document.querySelectorAll('[name="planAchieved"]').forEach(input => input.closest('label')?.remove());
+    document.querySelectorAll('.people-summary .stat').forEach(card => { if (card.textContent.includes('แพลนที่ทำได้')) card.remove(); });
+    document.querySelectorAll('.goal-details > div').forEach(item => { if (item.textContent.includes('แพลนที่ทำได้')) item.remove(); });
+    document.querySelectorAll('.summary-legend span,.summary-total span').forEach(item => { if (item.textContent.includes('แพลนที่ทำได้')) item.remove(); });
+  </script>
 </body>
 </html>
