@@ -35,16 +35,22 @@
   // Google Sheets is the source of truth. Check it again whenever the user
   // returns to the dashboard, so data saved in another tab is never cached.
   let syncing = false;
+  function stableRecords(value) {
+    const rows = Array.isArray(value) ? value : [];
+    return rows.slice().sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')));
+  }
   function syncFromSheet() {
     if (syncing) return Promise.resolve(false);
     syncing = true;
     return load().then(records => {
-      const next = JSON.stringify(records);
-      const previous = localStorage.getItem(storeKey) || '[]';
+      const normalized = stableRecords(records);
+      const next = JSON.stringify(normalized);
+      let previous = '[]';
+      try { previous = JSON.stringify(stableRecords(JSON.parse(localStorage.getItem(storeKey) || '[]'))); } catch {}
       const changed = next !== previous;
       if (changed) {
         localStorage.setItem(storeKey, next);
-        window.dispatchEvent(new CustomEvent('sales-flow-sheet-loaded', { detail: records }));
+        window.dispatchEvent(new CustomEvent('sales-flow-sheet-loaded', { detail: normalized }));
       }
       return changed;
     }).catch(() => false).finally(() => { syncing = false; });
