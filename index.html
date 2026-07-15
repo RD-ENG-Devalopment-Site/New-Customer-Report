@@ -421,6 +421,7 @@
   <script>
     document.querySelectorAll('[name="planAchieved"]').forEach(input => input.closest('label')?.remove());
     document.querySelectorAll('.people-summary .stat').forEach(card => { if (card.textContent.includes('แพลนที่ทำได้')) card.remove(); });
+    document.querySelector('.people-summary')?.querySelectorAll(':scope > .stat')[1]?.remove();
     document.querySelectorAll('.goal-details > div').forEach(item => { if (item.textContent.includes('แพลนที่ทำได้')) item.remove(); });
     document.querySelectorAll('.summary-legend span,.summary-total span').forEach(item => { if (item.textContent.includes('แพลนที่ทำได้')) item.remove(); });
     const dailyGrid = document.querySelector('.daily-chart-card')?.parentElement;
