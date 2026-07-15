@@ -406,5 +406,16 @@
     const brandName = document.querySelector('.brand span:last-child');
     if (brandName) brandName.textContent = 'สรุปผู้มุ่งหวังใหม่';
   </script>
+  <script>
+    // Update charts in place when GAS returns new records; never reload the page.
+    window.addEventListener('sales-flow-sheet-loaded', event => {
+      const rows = event.detail || [];
+      const available = rows.map(row => String(row.date || '').slice(0, 10)).filter(Boolean).sort();
+      if (available.length && !available.includes(dailyDate.value)) dailyDate.value = available[available.length - 1];
+      dailyDate.dispatchEvent(new Event('change'));
+      document.querySelector('#weekPicker')?.dispatchEvent(new Event('change'));
+      document.querySelector('#monthPicker')?.dispatchEvent(new Event('change'));
+    });
+  </script>
 </body>
 </html>

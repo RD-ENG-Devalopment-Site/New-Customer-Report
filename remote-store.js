@@ -57,13 +57,14 @@
   }
 
   window.salesFlowRemote.refresh = syncFromSheet;
-  syncFromSheet().then(changed => {
-    // The dashboard builds its charts at page load, so render fresh records
-    // after a sheet change without relying on a one-time session cache.
-    if (changed) location.reload();
-  });
-  window.addEventListener('focus', () => syncFromSheet().then(changed => { if (changed) location.reload(); }));
+  function startSync() { syncFromSheet(); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSync, { once: true });
+  } else {
+    startSync();
+  }
+  window.addEventListener('focus', startSync);
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) syncFromSheet().then(changed => { if (changed) location.reload(); });
+    if (!document.hidden) startSync();
   });
 }());
