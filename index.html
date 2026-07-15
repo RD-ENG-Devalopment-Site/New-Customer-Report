@@ -417,7 +417,14 @@
       document.querySelector('#monthPicker')?.dispatchEvent(new Event('change'));
     });
   </script>
-  <style>.summary-bar.actual,.summary-legend span:nth-child(2),.summary-total span:nth-child(2){display:none!important}</style>
+  <style>
+    .summary-bar.actual,.summary-legend span:nth-child(2),.summary-total span:nth-child(2){display:none!important}
+    .content{max-width:none;margin:0}
+    .stats.people-summary{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .grid:has(.daily-chart-card){grid-template-columns:minmax(0,1fr)}
+    @media(max-width:1000px){.stats.people-summary{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:650px){.stats.people-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  </style>
   <script>
     document.querySelectorAll('[name="planAchieved"]').forEach(input => input.closest('label')?.remove());
     document.querySelectorAll('.people-summary .stat').forEach(card => { if (card.textContent.includes('แพลนที่ทำได้')) card.remove(); });
