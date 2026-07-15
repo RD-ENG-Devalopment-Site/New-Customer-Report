@@ -423,6 +423,8 @@
     document.querySelectorAll('.people-summary .stat').forEach(card => { if (card.textContent.includes('แพลนที่ทำได้')) card.remove(); });
     document.querySelectorAll('.goal-details > div').forEach(item => { if (item.textContent.includes('แพลนที่ทำได้')) item.remove(); });
     document.querySelectorAll('.summary-legend span,.summary-total span').forEach(item => { if (item.textContent.includes('แพลนที่ทำได้')) item.remove(); });
+    const dailyGrid = document.querySelector('.daily-chart-card')?.parentElement;
+    dailyGrid?.querySelectorAll(':scope > .card')[1]?.remove();
   </script>
 </body>
 </html>
