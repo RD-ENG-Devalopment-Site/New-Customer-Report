@@ -189,7 +189,14 @@
     dailyCard.classList.add('daily-chart-card');
     dailyCard.innerHTML = `<div class="daily-chart-head"><div><h2>ผลการติดตามรายวัน</h2><p id="dailySubtitle">สรุปผลตามวันที่เลือก</p></div><input class="daily-date" id="dailyDate" type="date" aria-label="เลือกวันที่"></div><div class="daily-legend"><span><i style="background:#a855f7"></i>ผู้มุ่งหวังเดิม</span><span><i style="background:#38bdf8"></i>ผู้มุ่งหวังใหม่</span><span><i style="background:#f59e0b"></i>รอติดตาม</span><span><i style="background:#10b981"></i>ปิดการติดตาม</span><span><i style="background:#fb7185"></i>ยังไม่ปิด</span></div><div class="daily-plot" id="dailyPlot"></div>`;
     const dailyDate = document.querySelector('#dailyDate');
-    dailyDate.value = new Date().toISOString().slice(0,10);
+    // Start on the newest saved day when today has no record yet. This keeps
+    // the dashboard useful immediately after a daily entry is sent to GAS.
+    const todayKey = new Date().toISOString().slice(0,10);
+    const savedDates = JSON.parse(localStorage.getItem('sales-flow-records') || '[]')
+      .map(row => String(row.date || '').slice(0,10))
+      .filter(Boolean)
+      .sort();
+    dailyDate.value = savedDates.includes(todayKey) ? todayKey : (savedDates[savedDates.length - 1] || todayKey);
     const dailyTypes = [
       {label:'เดิม', color:'#a855f7', test:row=>row.type==='เดิม'},
       {label:'ใหม่', color:'#38bdf8', test:row=>row.type==='ใหม่'},
